@@ -21,6 +21,10 @@ export class Main extends React.Component{
         fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${movieName}${movieType !== 'all' ? `&type=${movieType}` : ''}`)
             .then(response => response.json())
             .then(data => this.setState({movies: data.Search, loading: false}))
+            .catch((err) => {
+                console.error(err)
+                this.setState({loading: false})
+            })
     }
 
     render() {
